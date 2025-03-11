@@ -22,8 +22,7 @@ import {
   TruckIcon,
   CheckCircleIcon 
 } from "@heroicons/react/24/outline";
-import supabase from '../utils/Supabase';
-
+import supabase from '../utils/supabase';
 interface Order {
   id: number;
   store: string;

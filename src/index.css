@@ -2,80 +2,171 @@
 @tailwind components;
 @tailwind utilities;
 
-.pattern-dots {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 20px 20px;
+/* Base styles */
+@layer base {
+  body {
+    @apply bg-white dark:bg-midnight-900 text-gray-900 dark:text-white/90 antialiased transition-colors duration-200;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Component styles */
+@layer components {
+  /* Navigation */
+  .nav-link {
+    @apply relative px-4 py-2 text-gray-600 dark:text-white/80 hover:text-sunset transition-colors duration-300
+           after:content-[''] after:absolute after:bottom-0 after:left-0 
+           after:w-0 after:h-[1px] after:bg-sunset
+           hover:after:w-full after:transition-all after:duration-300;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white dark:bg-midnight-800/80 backdrop-blur-lg 
+           border border-gray-100 dark:border-stone-600/10 rounded-xl
+           shadow-soft-light dark:shadow-soft-dark 
+           hover:shadow-glow-sunset dark:hover:shadow-glow-sunset-dark 
+           transition-all duration-300
+           hover:border-sunset/20;
+  }
+
+  /* Service Cards */
+  .service-card {
+    @apply relative p-6 rounded-xl transition-all duration-300
+           backdrop-blur-lg border;
+  }
+
+  .service-card-carpooling {
+    @apply border-green-200 dark:border-green-500/20
+           bg-green-50/50 dark:bg-green-500/5
+           hover:shadow-glow-green dark:hover:shadow-glow-green-dark;
+  }
+
+  .service-card-shopping {
+    @apply border-sunset/20 dark:border-sunset/20
+           bg-sunset-50/50 dark:bg-sunset/5
+           hover:shadow-glow-sunset dark:hover:shadow-glow-sunset-dark;
+  }
+
+  .service-card-large-items {
+    @apply border-purple-200 dark:border-purple-500/20
+           bg-purple-50/50 dark:bg-purple-500/5
+           hover:shadow-glow-purple dark:hover:shadow-glow-purple-dark;
+  }
+
+  /* Price Tags */
+  .price-tag {
+    @apply flex items-center gap-1 px-3 py-1.5 rounded-full
+           bg-white dark:bg-gray-800 
+           border border-gray-100 dark:border-gray-700
+           text-sm font-medium;
+  }
+
+  .price-tag-carpooling {
+    @apply text-green-500 dark:text-green-400;
+  }
+
+  .price-tag-shopping {
+    @apply text-sunset;
+  }
+
+  .price-tag-large-items {
+    @apply text-purple-500 dark:text-purple-400;
+  }
+
+  /* Feature Icons */
+  .feature-icon {
+    @apply p-2 rounded-lg transition-transform duration-300
+           group-hover:scale-110;
+  }
+
+  .feature-icon-carpooling {
+    @apply bg-green-50 dark:bg-green-500/10
+           text-green-500 dark:text-green-400;
+  }
+
+  .feature-icon-shopping {
+    @apply bg-sunset-50 dark:bg-sunset/10
+           text-sunset;
+  }
+
+  .feature-icon-large-items {
+    @apply bg-purple-50 dark:bg-purple-500/10
+           text-purple-500 dark:text-purple-400;
+  }
+
+  /* Buttons */
+  .button {
+    @apply px-6 py-2 rounded-lg font-medium text-white
+           bg-gradient-sunset dark:bg-gradient-sunset-dark
+           border border-sunset/30 hover:border-sunset/50
+           transform transition-all duration-300
+           hover:scale-[1.02] hover:shadow-glow-sunset dark:hover:shadow-glow-sunset-dark
+           focus:ring-2 focus:ring-sunset/50 focus:ring-offset-2 
+           focus:ring-offset-white dark:focus:ring-offset-midnight-900
+           focus:outline-none;
+  }
+
+  /* Inputs */
+  .input {
+    @apply bg-white dark:bg-midnight-800/50 
+           border border-gray-200 dark:border-stone-600/20 rounded-lg px-4 py-2
+           focus:ring-2 focus:ring-sunset/50 focus:border-sunset/30
+           placeholder:text-gray-400 dark:placeholder:text-stone-400 
+           text-gray-900 dark:text-white
+           transition-all duration-300;
+  }
+
+  /* 3D Scene Container */
+  .scene-container {
+    @apply absolute inset-0 -z-10 bg-gradient-light dark:bg-gradient-dark;
+  }
+
+  .scene-overlay {
+    @apply absolute inset-0 bg-white/50 dark:bg-midnight-900/50 backdrop-blur-sm;
+  }
 }
 
-@keyframes slideIn {
-  from { transform: translateX(-20px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+/* Utilities */
+@layer utilities {
+  /* Glass morphism */
+  .glass {
+    @apply backdrop-blur-sm 
+           bg-white/80 dark:bg-midnight-800/80 
+           border border-gray-100/50 dark:border-stone-600/10;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-sunset dark:bg-gradient-sunset-dark;
+  }
+
+  /* Service-specific gradients */
+  .gradient-carpooling {
+    @apply bg-gradient-green dark:bg-gradient-green-dark;
+  }
+
+  .gradient-shopping {
+    @apply bg-gradient-sunset dark:bg-gradient-sunset-dark;
+  }
+
+  .gradient-large-items {
+    @apply bg-gradient-purple dark:bg-gradient-purple-dark;
+  }
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-2;
 }
 
-/* Classes d'animation */
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-midnight-800;
 }
 
-.animate-slide-in {
-  animation: slideIn 0.5s ease-out forwards;
-}
-
-.hover-pulse:hover {
-  animation: pulse 0.5s ease-in-out;
-}
-
-/* Transitions personnalisées */
-.transition-custom {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Styles des cartes */
-.service-card {
-  @apply bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center transition-all duration-300 cursor-pointer;
-}
-
-.service-card:hover {
-  @apply bg-white/20 transform -translate-y-1 shadow-lg;
-}
-
-/* Styles des boutons */
-.btn-primary {
-  @apply w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300;
-}
-
-.btn-primary:hover {
-  @apply shadow-lg transform -translate-y-0.5;
-}
-
-/* Styles des inputs */
-.input-custom {
-  @apply pl-10 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition-all duration-200;
-}
-
-.input-custom:focus {
-  @apply shadow-md;
-}
-
-/* Animation des marqueurs sur la carte */
-.marker-pulse {
-  animation: markerPulse 2s infinite;
-}
-
-@keyframes markerPulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.2); opacity: 0.7; }
-  100% { transform: scale(1); opacity: 1; }
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-sunset dark:bg-gradient-sunset-dark rounded-full;
 }

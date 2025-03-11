@@ -20,7 +20,7 @@ import {
   XMarkIcon,
   ExclamationTriangleIcon,
 } from "@heroicons/react/24/outline";
-import supabase from '../utils/Supabase';
+import supabase  from '../utils/supabase';
 
 interface Freter {
   id: string;
